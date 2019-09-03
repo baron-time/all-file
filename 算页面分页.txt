@@ -1,0 +1,22 @@
+            function getPageSize(tableID, boolean) {
+                var bool = false;
+                var fontSize = parseInt($('html').css('font-size'));
+                if (arguments.length == 2) {
+                    bool = boolean;
+                }
+                if (arguments.length > 0) {
+                    var box = document.getElementById(tableID);
+                } else {
+                    var box = document.getElementsByTagName("table")[0];
+                }
+                var height = box.parentElement.offsetHeight; //获取容器的高度
+                if (bool == false) {
+                    var actualHeight = height - 0.56 * fontSize; //右边的高度-标题部分的高度-下面分页的高度-容器的padding值-标题哪一行的高度；
+                } else {
+                    var actualHeight = height; //右边的高度-标题部分的高度-下面分页的高度-容器的padding值-标题哪一行的高度；
+                }
+                var trHeight = 0.56 * fontSize;
+                var pagesize = Math.floor(actualHeight / trHeight);
+                return pagesize;
+            }
+            var i = getPageSize('tb')

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="text"></div>
+</body>
+<script>
+    function All(param) {
+        this.name = param.name || '匿名';
+        this.gender = param.gender || '女';
+    }
+
+    All.prototype.hellow = function () {
+        var it = '你好' + this.name + this.gender + '士';
+        return it
+    }
+
+    function createStudent(param) {
+        return new All(param || {})
+    }
+
+    var sum = createStudent({
+        name: '小明',
+        gender: '1男'
+    })
+    sum.hellow()
+    var iy = 'hahaha' + sum.hellow();
+    document.onclick = function () {
+        document.querySelector('.text').innerText = iy
+
+    }
+
+
+    function Student(props) {
+        this.name = props.name || 'Unnamed';
+    }
+
+    Student.prototype.hello = function () {
+        alert('Hello, ' + this.name + '!');
+    }
+
+    function PrimaryStudent(props) {
+        Student.call(this, props);
+        this.grade = props.grade || 1;
+    }
+
+    // 实现原型继承链: PrimaryStudent.prototype.proto = Student.prototype;
+
+    // 绑定其他方法到PrimaryStudent原型: PrimaryStudent.prototype.getGrade = function () { return this.grade; };
+
+    // 将proto直接指向Student.prototype不就完成继承了吗
+</script>
+
+</html>

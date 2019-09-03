@@ -1,0 +1,463 @@
+html,
+body {
+  background-color: #f5f5f6;
+}
+// 轮播图部分
+.banner {
+  position: relative;
+  width: 100%;
+  height: 4.14rem;
+  overflow: hidden;
+  .dian {
+    z-index: 1000;
+    bottom: 2.5rem;
+  }
+  .banner-top {
+    position: absolute;
+    width: 100%;
+    height: 0.63rem;
+    z-index: 1000;
+    padding: 0.15rem 0.15rem;
+    img {
+      height: 0.63rem;
+    }
+  }
+  .mui-slider-item {
+    height: 100%;
+    img {
+      height: 100%;
+    }
+  }
+}
+// 下边的内容
+.content {
+  width: 100%;
+  height: 100%;
+  padding: 0 0.14rem;
+  background-color: #f5f5f6;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  // 项目名以及内容部分开始
+  .order {
+    position: absolute;
+    width: 96.2%;
+    border-radius: 0.08rem 0.08rem 0 0;
+    background-color: #fff;
+    margin-top: -0.24rem;
+    padding: 0 0.24rem;
+    z-index: 1000;
+    h1 {
+      font-size: 0.32rem;
+      padding: 0.2rem 0;
+      font-weight: normal;
+    }
+    span {
+      display: inline-block;
+      font-size: 0.24rem;
+      padding: 0.06rem 0.1rem;
+      border: 1px solid #e5e5e5;
+      border-radius: 0.8rem;
+      color: #c8c8c8;
+      margin-bottom: 0.18rem;
+    }
+    .order-bottom {
+      width: 100%;
+      height: 1.74rem;
+      border-top: 1px solid #e5e5e5;
+      img {
+        height: 1.3rem;
+        margin-top: 0.19rem;
+      }
+      .sjs-name {
+        margin-top: 0.18rem;
+        margin-left: 0.38rem;
+        p {
+          line-height: 0.45rem;
+          &:nth-child(1) {
+            font-size: 0.32rem;
+            color: #000;
+          }
+          &:nth-child(2) {
+            font-size: 0.26rem;
+            color: #666666;
+          }
+          &:nth-child(3) {
+            font-size: 0.26rem;
+            color: #666666;
+            i {
+              color: #ce2222;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+      .promptly {
+        margin-top: 0.38rem;
+        button {
+          background-color: #ce2222;
+          border: 0;
+          color: #fff;
+          font-size: 0.26rem;
+          border-radius: 0;
+          padding: 0.08rem 0.18rem;
+          margin-bottom: 0.14rem;
+        }
+        img {
+          display: block;
+          margin: 0 auto;
+          height: 0.23rem;
+        }
+      }
+    }
+  }
+  // 项目名以及内容部分结束
+  // 客户需求/客户观点开始
+  .demand {
+    margin-top: 3.3rem;
+    background-color: #fff;
+    padding: 0 0.24rem;
+    overflow: hidden;
+    padding-bottom: 0.2rem;
+    div {
+      p {
+        &:nth-child(1) {
+          font-size: 0.32rem;
+          color: #000;
+          margin: 0.19rem 0;
+        }
+        &:nth-child(2) {
+          font-size: 0.24rem;
+          color: #989898;
+        }
+      }
+    }
+  }
+  // 客户需求/客户观点结束
+  // 方案图开始
+  .plan {
+    width: 100%;
+    margin-top: 0.2rem;
+    background-color: #fff;
+    .al {
+      height: 4.54rem;
+      h3 {
+        font-size: 0.32rem;
+        color: #000;
+        font-weight: normal;
+        padding: 0.2rem 0.2rem;
+      }
+      .mui-slideris {
+        width: 94%;
+        height: 3.56rem;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+    }
+    // 方案图结束
+    // 效果图开始
+    .xgt {
+      padding: 0 0.21rem;
+      h3 {
+        font-size: 0.32rem;
+        color: #000;
+        font-weight: normal;
+        padding: 0.2rem 0;
+      }
+      .xgt-bottom {
+        margin-bottom: 0.3rem;
+        img {
+          width: 100%;
+        }
+        p {
+          &:nth-child(2) {
+            font-size: 0.28rem;
+            color: #555555;
+          }
+          &:nth-child(3) {
+            font-size: 0.24rem;
+            color: #999999;
+          }
+        }
+      }
+    }
+    // 效果图结束
+  }
+  // 相关案例开始
+  .related {
+    padding: 0 0.24rem;
+    background-color: #fff;
+    .khpj-h3 {
+      border: 0;
+      padding-bottom: 0;
+    }
+    .khpj {
+      padding-top: 0 !important;
+      h4 {
+        line-height: 0.4rem;
+      }
+    }
+    h3 {
+      font-size: 0.32rem;
+      padding: 0.15rem 0;
+      font-weight: normal;
+      border-bottom: 1px solid #d2d2d2;
+    }
+    #title {
+      a {
+        font-size: 0.24rem;
+      }
+    }
+    .sjs-com {
+      padding: 0 0;
+      padding-bottom: 0.16rem;
+      border-bottom: 1px solid #eeeeee;
+      &:last-child {
+        border-bottom: 0;
+      }
+      h4 {
+        font-size: 0.256rem;
+        font-weight: normal;
+        i {
+          font-size: 0.24rem;
+          margin-left: 0.21rem;
+          color: #777777;
+        }
+      }
+      div img {
+        display: inline-block;
+        width: 31.8%;
+        height: 1.35rem;
+        margin-right: 0.07rem;
+        &:nth-child(3) {
+          margin-right: 0;
+        }
+      }
+      span {
+        color: #777777;
+        font-size: 0.24rem;
+      }
+      p {
+        width: 100%;
+        color: #777777;
+        margin-top: 0.08rem;
+        font-size: 0.24rem;
+        img {
+          width: 0.2rem !important;
+          height: 0.27rem;
+          margin-right: 0.14rem;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+  // 相关案例结束
+  // 免责声明开始
+  .Liability {
+    width: 100%;
+    background-color: #fff;
+    height: 0.9rem;
+    padding: 0 0.25rem;
+    line-height: 0.47rem;
+    font-size: 0.24rem;
+    color: #a9a9a9;
+    margin-top: 0.1rem;
+    p {
+      display: block;
+      width: 100%;
+    }
+  }
+  // 免责声明结束
+}
+// 联系客服、收藏、购买服务导航开始
+.gmfw {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 4000;
+  div {
+    float: left;
+    width: 33.33%;
+    height: 0.85rem;
+    line-height: 0.85rem;
+    text-align: center;
+    font-size: 0.28rem;
+    &:nth-child(1) {
+      background-color: #fff;
+      color: #000;
+      img {
+        width: 0.42rem;
+        vertical-align: middle;
+        margin-right: 0.24rem;
+      }
+    }
+    &:nth-child(2) {
+      background-color: #feaa19;
+      color: #fff;
+    }
+    &:nth-child(3) {
+      background-color: #ce2222;
+      color: #fff;
+    }
+  }
+}
+// 联系客服、收藏、购买服务导航结束
+// 购买服务弹框开始
+.gmfw-tk {
+  width: 100%;
+  .orders {
+    position: fixed;
+    width: 96.2%;
+    border-radius: 0.08rem 0.08rem 0 0;
+    background-color: #fff;
+    margin-left: 0.14rem;
+    bottom: -100%;
+    padding: 0 0.24rem;
+    z-index: 4000;
+    .over {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 0.7rem;
+    }
+    h1 {
+      font-size: 0.32rem;
+      padding: 0.2rem 0;
+      font-weight: normal;
+    }
+    span {
+      display: inline-block;
+      font-size: 0.24rem;
+      padding: 0.06rem 0.1rem;
+      border: 1px solid #e5e5e5;
+      border-radius: 0.8rem;
+      color: #c8c8c8;
+      margin-bottom: 0.18rem;
+    }
+    .order-bottom {
+      width: 100%;
+      height: 1.74rem;
+      border-top: 1px solid #e5e5e5;
+      border-bottom: 1px solid #e5e5e5;
+      img {
+        height: 1.3rem;
+        margin-top: 0.19rem;
+      }
+      .sjs-name {
+        margin-top: 0.18rem;
+        margin-left: 0.38rem;
+        p {
+          line-height: 0.45rem;
+          &:nth-child(1) {
+            font-size: 0.32rem;
+            color: #000;
+          }
+          &:nth-child(2) {
+            font-size: 0.26rem;
+            color: #666666;
+          }
+          &:nth-child(3) {
+            font-size: 0.26rem;
+            color: #666666;
+            i {
+              color: #ce2222;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+      .promptly {
+        margin-top: 0.38rem;
+        button {
+          background-color: #ce2222;
+          border: 0;
+          color: #fff;
+          font-size: 0.26rem;
+          border-radius: 0;
+          padding: 0.08rem 0.18rem;
+          margin-bottom: 0.14rem;
+        }
+        img {
+          display: block;
+          margin: 0 auto;
+          height: 0.43rem;
+          margin-top: 0.3rem;
+        }
+      }
+    }
+    .choose {
+      width: 100%;
+      padding-top: 0.49rem;
+      img {
+        width: 6.75rem;
+        height: 0.25rem;
+      }
+      .phone {
+        width: 100%;
+        height: 0.47rem;
+        margin: 0.3rem 0;
+        span {
+          display: inline-block;
+          border: 0;
+          color: #666666;
+          font-size: 0.3rem;
+          margin-left: 0.82rem;
+        }
+        input {
+          display: inline-block;
+          width: 3.89rem;
+          height: 100%;
+          font-size: 0.24rem;
+        }
+        input::-webkit-input-placeholder {
+          color: #c8c8c8;
+          font-size: 0.24rem;
+        }
+      }
+      ul {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.4rem;
+        span {
+          float: left;
+          border: 0;
+          font-size: 0.24rem;
+          margin-right: 0.3rem;
+        }
+        li {
+          float: left;
+          font-size: 0.24rem;
+          padding: 0.09rem 0.15rem;
+          border: 1px solid #cacaca;
+          margin-right: 0.14rem;
+        }
+      }
+      button {
+        width: 100%;
+        height: 0.69rem;
+        background-color: #ce2222;
+        color: #fff;
+        border-color: #fff;
+        border-radius: 0.8rem;
+        margin-bottom: 0.34rem;
+      }
+    }
+  }
+}
+// 购买服务弹框结束
+// 蒙层
+.hide {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 3000;
+  display: none;
+}
+// 弹框的点击样式
+.active {
+  border-color: #ce2222 !important;
+}

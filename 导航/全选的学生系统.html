@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<style>
+    #nul {
+        margin-left: 150px;
+        display: none;
+    }
+</style>
+
+<body onpagehide="myFunction()">
+
+    <h1>学员信息查询管理系统</h1>
+    条件：<p><input id="txt_search" type="text" placeholder="搜索空为显示全部"> <input id="btn_search" type="button"
+            value="查询姓名" />
+        <input type="button" id="del_btn" value="选择删除" /></p>
+    <table id="tab" border="1">
+        <tr id="sh">
+            <th><input type="checkbox" id="selectAll" />全选 <input type="checkbox" id="ReverseSelect" />反选</th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>成绩</th>
+            <th>班级</th>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="xz" /></td>
+            <td>110</td>
+            <td class="nm">小明</td>
+            <td>男</td>
+            <td>44</td>
+            <td>100</td>
+            <td>89班</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="xz" /></td>
+            <td>110</td>
+            <td class="nm">小红</td>
+            <td>男</td>
+            <td>44</td>
+            <td>99</td>
+            <td>89班</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="xz" /></td>
+            <td>110</td>
+            <td class="nm">小白</td>
+            <td>男</td>
+            <td>44</td>
+            <td>98</td>
+            <td>89班</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="xz" /></td>
+            <td>110</td>
+            <td class="nm">小王</td>
+            <td>男</td>
+            <td>44</td>
+            <td>22</td>
+            <td>89班</td>
+        </tr>
+    </table>
+    <div id="nul">没有此人</div>
+    <script src="./jquery.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+
+        $('#selectAll').on('click', function () {
+            // $('#tab td input').attr('checked')
+            var flage = $(this).is(":checked");
+            if (flage) {
+                $('#tab td input').prop("checked", true);
+            } else {
+                $('#tab td input').prop("checked", false);
+            }
+        })
+        // 四个选中再全选
+        $('.xz').on('click', function () {
+            if ($(".xz[type='checkbox']:checked").length == $('.xz').length) {
+                $('#selectAll').prop("checked", true);
+            } else {
+                $('#selectAll').prop("checked", false);
+            }
+        })
+        // 反选
+        $('#ReverseSelect').on('click', function () {
+            $("#tab td :checkbox").each(function () {
+                //遍历所有复选框，然后取值进行 !非操作
+                $(this).prop("checked", !$(this).prop("checked"));
+            })
+            if ($(".xz[type='checkbox']:checked").length == $('.xz').length) {
+                $('#selectAll').prop("checked", true);
+            } else {
+                $('#selectAll').prop("checked", false);
+            }
+        })
+        // 搜索
+        $('#btn_search').on('click', function () {
+            var tex = $('#txt_search').val()
+            $('.nm').each(function () {
+                if (tex == $(this).text()) {
+                    $(this).text(tex).parents('tr').show().siblings().hide();
+                    $('#nul').hide();
+                } else {
+                    $(this).parents('tr').hide();
+                    // $('#nul').show();
+                }
+                if (tex == '') {
+                    $(this).parents('tr').show();
+                    $('#nul').hide();
+                }
+            })
+            $('#sh').show()
+        })
+        // 删除
+        $('#del_btn').on('click', function () {
+            $("#tab td :checkbox").each(function () {
+                if ($(this).prop("checked") == true) {
+                    $(this).parents('tr').remove()
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

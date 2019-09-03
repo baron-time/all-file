@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+        .dn {
+            display: none;
+        }
+
+        div img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #loading,
+        #over {
+            width: 100%;
+            height: 30px;
+            background-color: pink;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<script src="./jquery.js"></script>
+<script>
+    // var Arr = [
+    //     ["我", "求", "别"],
+    //     ["真", "求", "秀"],
+    //     ["的", "你", "了"],
+    // ]
+    // console.table(Arr);
+    // console.assert((function () {
+    //     return false;
+    // })(), "你永远看不见我");
+    // 这是渲染的第一页
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "get",
+            url: "https://www.apiopen.top/satinApi?type=1&page=1",
+            dataType: 'json',
+            success: function (response) {
+                if (response.code == 200) {
+                    console.log('%c第\t1\t次\t数\t据\t请\t求\t成\t功', 'color:red;font-size: 20px;');
+                    var data = response.data
+                    for (var i in data) {
+                        var str = '';
+                        var cdn_img = data[i].cdn_img
+                        str += '<div><img src="' + cdn_img + '" alt=""></div>'
+                        $('body').append(str)
+                    }
+                }
+            }
+        });
+    })
+    // 这是从第二页开始下拉更多
+    var pager = 1;
+    var stop = true;
+    $(window).scroll(function () {
+        if ($(this).scrollTop() + $(window).height() + 100 >= $(document).height() && $(this).scrollTop() +
+            100) {
+            if (stop == true) {
+                stop = false;
+                pager = pager + 1;
+                $.ajax({
+                    type: "get",
+                    url: "https://www.apiopen.top/satinApi?type=1&page=" + pager,
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.code == 200) {
+                            console.log('%c第\t' + pager + '\t次\t数\t据\t请\t求\t成\t功','color:red;font-size: 20px;');
+                            var data = response.data
+                            for (var i in data) {
+                                var str = '';
+                                var cdn_img = data[i].cdn_img
+                                str += '<div><img src="' + cdn_img + '" alt=""></div>'
+                                $('body').append(str)
+                                $('#loading').remove()
+                            }
+                            $('body').append('<div id="loading">加载中......</div>')
+                            stop = true;
+                        } else {
+                            console.log('%c数\t据\t请\t求\t失\t败', 'color:red;font-size: 20px;');
+                            $('body').append('<div id="over">淦！~没有数据</div>')
+                        }
+                    }
+                });
+            }
+        }
+    });
+    function SlyarErrors() {
+        return true;
+    }
+    window.onerror = SlyarErrors;
+</script>
+
+</html>

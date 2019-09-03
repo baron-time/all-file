@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>点击返回指定位置</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #nav {
+            position: fixed;
+            left: 30px;
+            top: 10px;
+        }
+
+        #nav li {
+            width: 50px;
+            height: 30px;
+            font: bold 20px/30px simhei;
+            text-align: center;
+            list-style-type: none;
+            background: #333;
+            color: #fff;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        #list {
+            width: 470px;
+            overflow: hidden;
+            margin-left: 200px;
+        }
+
+        #list li {
+            width: 470px;
+            height: 300px;
+            text-align: center;
+            font: bold 100px/300px simhei;
+            list-style-type: none;
+            background: yellow;
+            color: blue;
+            /* margin: 50px 200px; */
+            margin-bottom: 50px;
+        }
+
+        .blue {
+            background-color: blue !important;
+            color: #fff !important;
+        }
+
+        .undfand {
+            background-color: #fff !important;
+        }
+
+        .top {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            width: 50px;
+            height: 50px;
+            background-color: pink;
+            cursor: pointer;
+        }
+
+        #list #go1 {
+            position: relative;
+            height: 300px;
+        }
+
+        #go1 div {
+            float: left;
+            width: 470px;
+            height: 100%;
+            background-color: orange;
+            margin-right: 10px;
+        }
+
+        #go1 div img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn {
+            position: absolute;
+            width: 546px;
+            height: 50px;
+            top: 130px;
+            left: 160px;
+        }
+
+        .btn button {
+            width: 30px;
+            height: 40px;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="nav">
+        <li data-in="go1" class="blue">1</li>
+        <li data-in="go2">2</li>
+        <li data-in="go3">3</li>
+        <li data-in="go4">4</li>
+        <li data-in="go5">5</li>
+        <li data-in="go6">6</li>
+        <li data-in="go7">7</li>
+        <li data-in="go8">8</li>
+        <li data-in="go9">9</li>
+        <li data-in="go10">10</li>
+    </ul>
+    <div class="btn">
+        <button class="left fl">←</button>
+        <button class="right fr">→</button>
+    </div>
+    <ul id="list">
+        <li id="go1">
+        </li>
+        <li id="go2">2</li>
+        <li id="go3">3</li>
+        <li id="go4">4</li>
+        <li id="go5">5</li>
+        <li id="go6">6</li>
+        <li id="go7">7</li>
+        <li id="go8">8</li>
+        <li id="go9">9</li>
+        <li id="go10">10</li>
+        <li class="undfand"> </li>
+    </ul>
+
+    <div class="top">返回顶部</div>
+    <script src="./jquery.js"></script>
+    <script>        
+        $(document).ready(function () {
+            $.ajax({
+                type: "get",
+                url: "https://www.apiopen.top/satinApi?type=1&page=1",
+                dataType: 'json',
+                success: function (response) {
+                    if (response.code == 200) {
+                        // 动态计算轮播图的宽度
+                        var data = response.data
+                        for (var i in data) {
+                            len = data.length
+                            if (len == 1) {
+                                $('.right').hide();
+                                $('.left').hide();
+                            }
+                            var str = '';
+                            var cdn_img = data[i].cdn_img
+                            str += '<div><img src="' + cdn_img + '" alt=""></div>'
+                            $('#go1').append(str).css({
+                                'width': len * 480
+                            })
+                        }
+                    } else {
+                        $('.right').hide();
+                        $('.left').hide();
+                        $('#go1').html('<div>莫得东西</div>')
+                    }
+                }
+            });
+        })
+        // 轮播图的右按钮点击
+        var i = 0;
+        $('.right').on('click', function () {
+            i++;
+            var j = 480 * i;
+            $('#go1').stop().animate({
+                'right': j
+            })
+            if (i >= len) {
+                $('#go1').stop().css({
+                    'right': 0
+                });
+                i = 0;
+            }
+        })
+        // 轮播图的左按钮点击
+        $('.left').on('click', function () {
+            i--;
+            var j = 480 * i + 'px';
+            $('#go1').stop().animate({
+                'right': j
+            })
+            if (i < 0) {
+                $('#go1').stop().css({
+                    'right': 480 * (len - 1)
+                });
+                i = len;
+            }
+        })
+        // 点击导航滚动到对应位置
+        $('#nav').on('click', 'li', function (e) {
+            var target = e.target;
+            var id = $(target).data("in");
+            $('html,body').stop().animate({
+                scrollTop: $('#' + id).offset().top
+            }, 800);
+        });
+        // 滚动到某个位置导航某个背景颜色变化
+        $(document).scroll(function () {
+            var scroH = $(document).scrollTop(); //滚动高度
+            var viewH = $(window).height(); //可见高度 
+            var contentH = $(document).height(); //内容高度
+            var li = $('#nav li');
+            if (scroH >= 50) {
+                li.eq(0).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 400 - 200) {
+                li.eq(1).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 749 - 200) {
+                li.eq(2).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 1100 - 200) {
+                li.eq(3).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 1450 - 200) {
+                li.eq(4).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 1800 - 200) {
+                li.eq(5).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 2150 - 200) {
+                li.eq(6).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 2500 - 200) {
+                li.eq(7).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 2850 - 200) {
+                li.eq(8).addClass('blue').siblings().removeClass('blue')
+            }
+            if (scroH >= 3200 - 200) {
+                li.eq(9).addClass('blue').siblings().removeClass('blue')
+            }
+        });
+        // 点击到达顶部
+        $('.top').on('click', function () {
+            $('html,body').stop().animate({
+                scrollTop: 0
+            }, 800);
+        })
+    </script>
+</body>
+
+</html>

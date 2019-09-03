@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../u=1457704519,3529830056&fm=27&gp=0.jpg" class="img" alt="">
+</body>
+<script src="./jquery.js"></script>
+<script>
+    var img = $('.img');
+    var speed = 50;
+    var deg = 0;
+    setInterval(function () {
+        img.css({
+            '-ms-transform': 'rotate(' + deg + 'deg)',
+            /* IE 9 */
+            '-moz-transform': 'rotate(' + deg + 'deg)',
+            /* Firefox */
+            '-webkit-transform': 'rotate(' + deg + 'deg)',
+            /* Safari and Chrome */
+            '-o-transform': 'rotate(' + deg + 'deg)',
+            /* Opera */
+            'transform': 'rotate(' + deg + 'deg)'
+        });
+        deg += 1;
+        if (deg >= 360) {
+            deg = 0;
+        }
+    }, speed);
+</script>
+
+</html>

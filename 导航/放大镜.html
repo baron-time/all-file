@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #fang {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background-color: cornflowerblue;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test1">
+        <img src="../u=3300305952,1328708913&fm=26&gp=0.jpg" width="800px" />
+        <div id="fang">
+
+        </div>
+    </div>
+    <script src="./jquery.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $(function () {
+            //获得图片离浏览器顶端的距离
+            var top = $("#test1 img").position().top;
+            //获得图片离浏览器左端的距离
+            var left = $("#test1 img").position().left;
+            //鼠标在图片内部移动
+            $("#test1 img").mousemove(function (e) {
+                $("#fang").css({
+                    //此时鼠标的位置
+                    "top": e.clientY + 20 + "px",
+                    "left": e.clientX + 20 + "px",
+                    //放大镜中的图片
+                    "background-image": "url(../u=3300305952,1328708913&fm=26&gp=0.jpg)",
+                    "background-size": "800px 450px",
+                    "background-repeat": "no-repeat",
+                    //调整放大镜中的图片的位置
+                    "background-position": "-" + (e.clientX - left - 51) + "px -" + (e.clientY -
+                        top - 48) + "px",
+                    //放大图片
+                    "transform": "scale(1.5,1.5)"
+                });
+            });
+            //鼠标移进图片时显示放大镜
+            $("#test1 img").mouseenter(function () {
+                $("#fang").show();
+            });
+            //鼠标移出图片时隐藏放大镜
+            $("#test1 img").mouseout(function () {
+                $("#fang").hide();
+            });
+        });
+    </script>
+</body>
+
+</html>
