@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>
+            1.
+            <input type="button" value="上移">
+            <input type="button" value="下移">
+        </li>
+        <li>
+            2.
+            <input type="button" value="上移">
+            <input type="button" value="下移">
+        </li>
+        <li>
+            3.
+            <input type="button" value="上移">
+            <input type="button" value="下移">
+        </li>
+        <li>
+            4.
+            <input type="button" value="上移">
+            <input type="button" value="下移">
+        </li>
+        <li>
+            5.
+            <input type="button" value="上移">
+            <input type="button" value="下移">
+        </li>
+    </ul>
+    <script src="./jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('input[value="上移"]').click(function () {
+                var $nowLi = $(this).closest('li');
+                var $preLi = $nowLi.prev();
+                if ($preLi.length == 0) {
+                    alert('到了');
+                } else {
+                    $nowLi.insertBefore($preLi); //$nowLi插入到$preLi的前面
+                }
+            });
+
+            $('input[value="下移"]').click(function () {
+                var $nowLi = $(this).closest('li');
+                var $nextLi = $nowLi.next();
+                if ($nextLi.length == 0) {
+                    alert('到尾了');
+                } else {
+                    $nowLi.insertAfter($nextLi); ////$nowLi插入到$preLi的后面
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>
