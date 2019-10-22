@@ -7,3 +7,51 @@
             var m = date.getMinutes() + ':';
             var s = date.getSeconds();
             var registerTimes = Y + M + D + h + m + s;
+
+2.echarts自适应
+    var charts = [];
+    myChart.setOption(option);
+    charts.push(myChart);
+    window.onresize = function() {
+        for (var i = 0; i < charts.length; i++) {
+            charts[i].resize();
+        }
+    }
+3.vue时间筛选(element)
+ html：
+ <span>上传时间：</span>
+ <el-date-picker  class="dataTime" format="yyyy-MM-dd" value-format="yyyy-MM-dd HH:mm:ss" v-model="projectManagementTime" type="daterange"
+ range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" @blur="dataTimeBlur" ></el-date-picker>
+ js:
+ projectManagementTime: '', //日期
+ Time: {
+        latestUploadTimeStart: '', //开始日期
+        latestUploadTimeEnd: '', //结束日期
+ },
+ dataTimeBlur() { //开始结束时间
+        if (this.projectManagementTime != "" && this.projectManagementTime != null && this.projectManagementTime != undefined && this.projectManagementTime != "null") {
+            this.Time.latestUploadTimeStart = this.projectManagementTime[0]
+            this.Time.latestUploadTimeEnd = this.projectManagementTime[1]
+        } else {
+            this.Time.latestUploadTimeStart = "";
+            this.Time.latestUploadTimeEnd = "";
+        }
+  },
+  nodeAcceptanceManagements() {
+  //接口 例
+         let data = {
+             pageNum: this.CurrentPage,
+             pageSize: this.Pagesize,
+             projectName: this.projectManagementSearch.searchContent,
+             这里绑接口
+             ...this.Time,
+              projectAreaCode: this.projectManagementSearch.checkType,
+         }
+          this.$fetch.api.nodeAcceptanceManagements(data)
+             .then(data => {
+               this.nodeData = data;
+         })
+             .catch(data => {
+                return;
+         });
+ },
